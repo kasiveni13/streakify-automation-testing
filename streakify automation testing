@@ -1,0 +1,849 @@
+Streakify consistency tracker application automation testing using selenium and testng:
+
+
+package streakifyprjct;
+
+import java.time.Duration;
+import org.testng.annotations.Test;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+public class trackerapplication {
+	  WebDriver driver;
+	    WebDriverWait wait;
+
+	    String url =
+	        "https://streakify-consistency-tracker.vercel.app";
+
+	    @BeforeMethod
+	    public void setUp() {
+	        driver = new ChromeDriver();
+
+	        driver.manage().window().maximize();
+
+	        driver.manage().timeouts()
+	              .implicitlyWait(Duration.ofSeconds(10));
+
+	        wait = new WebDriverWait(
+	            driver, Duration.ofSeconds(15));
+
+	        driver.get(url);
+	    }
+	    
+	 // TC_001 - Verify website opens
+	    @Test
+	    public void TC_001_verifyWebsiteOpens() {
+	    	driver.get("https://streakify-consistency-tracker.vercel.app");
+	    	String actualTitle = driver.getTitle();
+	    	System.out.println("Tittle:"+actualTitle);
+	    	Assert.assertTrue(
+	    			actualTitle.contains("streakify"),
+	    	"website title verification failed");
+	    	System.out.println("Test is passed");
+	    	
+	    }
+	    
+	 // TC_002 – Verify Name, Age input and Next button click
+	    @Test
+	    public void  TC_002_verifyEnterDetailsAndClickNext() {
+
+	       // Enter Name
+	    	    driver.findElement(By.cssSelector("input[name='userName']"))
+	    	          .sendKeys("Kaviya");
+
+	    	    // Enter Age
+	    	    driver.findElement(By.xpath("//input[@placeholder='Your current age']"))
+	    	          .sendKeys("22");
+
+	    	    // Click Next button
+	    	    driver.findElement(By.xpath("//button[contains(text(),'Next')]"))
+	    	          .click();
+
+	    	    System.out.println("Name and Age entered, Next button clicked successfully");
+	    	}
+
+	    // TC_003 - Verify Designation and Goal Entry
+	   @Test
+	   public void TC_003_verifyDesignationAndGoal() {
+ 
+	       // Enter Name
+	       driver.findElement(By.cssSelector("input[name='userName']"))
+	             .sendKeys("Kaviya");
+
+	       // Enter Age
+	       driver.findElement(By.xpath("//input[@placeholder='Your current age']"))
+	             .sendKeys("22");
+
+	       // Click Next button
+	       driver.findElement(By.xpath("//button[contains(text(),'Next')]"))
+	             .click();
+
+	       // Enter Designation
+	       driver.findElement(By.xpath("//input[@placeholder ='Your current designation']"))
+	             .sendKeys("Software Tester");
+
+	       // Enter Goal
+	       driver.findElement(By.xpath("//input[@placeholder ='Your goal']"))
+	             .sendKeys("Learn Selenium Automation");
+
+	       // Click Submit button
+	       driver.findElement(By.xpath("//button[@type = 'submit']"))
+	             .click();
+
+	       System.out.println("TC_003: Details entered and Submit button clicked");
+	   }
+	   
+
+@Test
+public void TC_004_verifyHomeDashboardElements() {
+	
+	
+	// Enter Name
+    driver.findElement(By.cssSelector("input[name='userName']"))
+          .sendKeys("Kaviya");
+
+    // Enter Age
+    driver.findElement(By.xpath("//input[@placeholder='Your current age']"))
+          .sendKeys("22");
+
+    // Click Next button
+    driver.findElement(By.xpath("//button[contains(text(),'Next')]"))
+          .click();
+
+    // Enter Designation
+    driver.findElement(By.xpath("//input[@placeholder ='Your current designation']"))
+          .sendKeys("Software Tester");
+
+    // Enter Goal
+    driver.findElement(By.xpath("//input[@placeholder ='Your goal']"))
+          .sendKeys("Learn Selenium Automation");
+
+    // Click Submit button
+    driver.findElement(By.xpath("//button[@type = 'submit']"))
+          .click();
+    
+    // Verify Task navigation
+   
+        driver.findElement(By.xpath("//a[text() ='Task']"))
+        
+        .click();
+        
+        //Add New Task
+        driver.findElement(By.cssSelector("button.bg-white.text-gray-900")).click();
+        
+        //Start Time
+        driver.findElement(By.xpath("//input[@name='start']"))
+        .sendKeys("06.00");
+        //End Time
+        driver.findElement(By.xpath("//input[@ name='end']"))
+        .sendKeys("07.00");
+      
+        driver.findElement(By.xpath("//input[@ name='do']"))
+        .sendKeys("Learn Selenium");
+        
+        //click  Add task button
+        
+        driver.findElement(By.xpath(" //button[text()='Add Task']")).click();
+        
+      
+}
+@Test
+public void TC_05_verifyTaskAddedAlert() {
+
+	// Enter Name
+    driver.findElement(By.cssSelector("input[name='userName']"))
+          .sendKeys("Kaviya");
+
+    // Enter Age
+    driver.findElement(By.xpath("//input[@placeholder='Your current age']"))
+          .sendKeys("22");
+
+    // Click Next button
+    driver.findElement(By.xpath("//button[contains(text(),'Next')]"))
+          .click();
+
+    // Enter Designation
+    driver.findElement(By.xpath("//input[@placeholder ='Your current designation']"))
+          .sendKeys("Software Tester");
+
+    // Enter Goal
+    driver.findElement(By.xpath("//input[@placeholder ='Your goal']"))
+          .sendKeys("Learn Selenium Automation");
+
+    // Click Submit button
+    driver.findElement(By.xpath("//button[@type = 'submit']"))
+          .click();
+    
+    // Verify Task navigation
+   
+        driver.findElement(By.xpath("//a[text() ='Task']"))
+        
+        .click();
+        
+        //Add New Task
+        driver.findElement(By.cssSelector("button.bg-white.text-gray-900")).click();
+        
+        //Start Time
+        driver.findElement(By.xpath("//input[@name='start']"))
+        .sendKeys("06.00");
+        //End Time
+        driver.findElement(By.xpath("//input[@ name='end']"))
+        .sendKeys("07.00");
+      
+        driver.findElement(By.xpath("//input[@ name='do']"))
+        .sendKeys("Learn Selenium");
+        
+        //click  Add task button
+        
+        driver.findElement(By.xpath(" //button[text()='Add Task']")).click();
+
+    // Alert handle
+    Alert alert = driver.switchTo().alert();
+
+    // Get alert message
+    String alertMessage = alert.getText();
+
+    System.out.println("Alert Message: " + alertMessage);
+
+    // Verify alert message
+    Assert.assertEquals(alertMessage, "Task Added");
+
+    // Click OK
+    alert.accept();
+}
+@Test
+public void TC_06_verifySchedulerPageOpens() {
+	
+	// Enter Name
+    driver.findElement(By.cssSelector("input[name='userName']"))
+          .sendKeys("Kaviya");
+
+    // Enter Age
+    driver.findElement(By.xpath("//input[@placeholder='Your current age']"))
+          .sendKeys("22");
+
+    // Click Next button
+    driver.findElement(By.xpath("//button[contains(text(),'Next')]"))
+          .click();
+
+    // Enter Designation
+    driver.findElement(By.xpath("//input[@placeholder ='Your current designation']"))
+          .sendKeys("Software Tester");
+
+    // Enter Goal
+    driver.findElement(By.xpath("//input[@placeholder ='Your goal']"))
+          .sendKeys("Learn Selenium Automation");
+
+    // Click Submit button
+    driver.findElement(By.xpath("//button[@type = 'submit']"))
+          .click();
+    
+    // Click Scheduler menu
+    driver.findElement(By.xpath("//a[text()='Scheduler']")).click();
+
+    
+}
+@Test
+ public void Tc_07verifyschedulerelements() {
+	
+	TC_06_verifySchedulerPageOpens();
+	driver.findElement(By.cssSelector("input[name ='date']")).sendKeys("2026-10-09");
+	driver.findElement(By.cssSelector("input[name ='commitment']")).sendKeys("walking one hour");
+	
+	// Locate status dropdown
+    WebElement statusDropdown = driver.findElement(
+        By.cssSelector("select[name ='status']"));
+     
+	
+	Select select = new Select(statusDropdown);
+	  
+	 // Select Completed
+    select.selectByVisibleText("Completed");
+
+    Assert.assertEquals(
+        select.getFirstSelectedOption().getText(),
+        "Completed"
+    );
+	
+}
+
+	@Test
+	public void TC_008_verifyAddTaskWithEmptyFields() {
+
+	    // Complete initial setup
+	    driver.findElement(
+	        By.cssSelector("input[name='userName']")
+	    ).sendKeys("Kaviya");
+
+	    driver.findElement(
+	        By.xpath("//input[@placeholder='Your current age']")
+	    ).sendKeys("22");
+
+	    driver.findElement(
+	        By.xpath("//button[contains(text(),'Next')]")
+	    ).click();
+
+	    driver.findElement(
+	        By.xpath("//input[@placeholder='Your current designation']")
+	    ).sendKeys("Software Tester");
+
+	    driver.findElement(
+	        By.xpath("//input[@placeholder='Your goal']")
+	    ).sendKeys("Learn Selenium Automation");
+
+	    driver.findElement(
+	        By.xpath("//button[@type='submit']")
+	    ).click();
+
+	    // Open Task page
+	    driver.findElement(
+	        By.xpath("//a[normalize-space()='Task']")
+	    ).click();
+
+	    // Open Add New Task form
+	    driver.findElement(
+	        By.cssSelector("button.bg-white.text-gray-900")
+	    ).click();
+
+	    // Leave all fields empty and click Add Task
+	    driver.findElement(
+	        By.xpath("//button[normalize-space()='Add Task']")
+	    ).click();
+
+	    // Handle alert
+	    Alert alert = driver.switchTo().alert();
+
+	    String actualMessage = alert.getText();
+	    System.out.println("Alert Message: " + actualMessage);
+
+	    // Accept alert
+	    alert.accept();
+
+	    // Defect observation:
+	    // Empty fields still display "Task Added".
+	    Assert.assertNotEquals(
+	        actualMessage,
+	        "Task Added",
+	        "Defect: Task was accepted even though all fields were empty"
+	    );
+	}
+	
+@Test
+//Tc_09 verify Task Delete
+public void Tc_09verifyTaskDelete() {
+	TC_05_verifyTaskAddedAlert();
+	driver.findElement(By.xpath("//button[text()='Delete']")).click();
+}
+
+
+@Test
+public void TC_010_verifyMultipleTasksCreation() {
+
+    // Step 1: Complete onboarding
+    driver.findElement(By.cssSelector("input[name='userName']"))
+          .sendKeys("Kaviya");
+
+    driver.findElement(By.xpath("//input[@placeholder='Your current age']"))
+          .sendKeys("22");
+
+    driver.findElement(By.xpath("//button[contains(text(),'Next')]"))
+          .click();
+
+    driver.findElement(By.xpath("//input[@placeholder='Your current designation']"))
+          .sendKeys("Software Tester");
+
+    driver.findElement(By.xpath("//input[@placeholder='Your goal']"))
+          .sendKeys("Learn Selenium Automation");
+
+    driver.findElement(By.xpath("//button[@type='submit']"))
+          .click();
+
+    // Step 2: Open Task page
+    driver.findElement(By.xpath("//a[normalize-space()='Task']"))
+          .click();
+
+    // Step 3: Create multiple tasks
+    String[] tasks = {
+        "Learn Selenium",
+        "Practice Java",
+        "Read Book"
+    };
+
+    for (String taskName : tasks) {
+
+        driver.findElement(
+            By.cssSelector("button.bg-white.text-gray-900")
+        ).click();
+
+        driver.findElement(By.cssSelector("input[name='start']"))
+              .sendKeys("07:00");
+
+        driver.findElement(By.cssSelector("input[name='end']"))
+              .sendKeys("08:00");
+
+        // Enter the current task name
+        driver.findElement(By.cssSelector("input[name='do']"))
+              .sendKeys(taskName);
+
+        driver.findElement(
+            By.xpath("//button[normalize-space()='Add Task']")
+        ).click();
+
+        // Verify alert
+        Alert alert = wait.until(
+            org.openqa.selenium.support.ui.ExpectedConditions
+                .alertIsPresent()
+        );
+
+        Assert.assertEquals(
+            alert.getText(),
+            "Task Added",
+            "Task addition failed: " + taskName
+        );
+
+        alert.accept();
+    }
+
+    // Step 4: Verify all tasks are displayed
+    for (String taskName : tasks) {
+
+        WebElement task = wait.until(
+            org.openqa.selenium.support.ui.ExpectedConditions
+                .visibilityOfElementLocated(
+                    By.xpath("//*[normalize-space()='" + taskName + "']")
+                )
+        );
+
+        Assert.assertTrue(
+            task.isDisplayed(),
+            "Task not displayed: " + taskName
+        );
+    }
+
+    System.out.println(
+        "TC_010 Passed: All three tasks were added and displayed."
+    );
+}
+
+@Test
+public void TC_011_verifyInvalidTimeRange() {
+
+    // Complete onboarding
+    driver.findElement(By.cssSelector("input[name='userName']"))
+          .sendKeys("Kaviya");
+
+    driver.findElement(By.xpath("//input[@placeholder='Your current age']"))
+          .sendKeys("22");
+
+    driver.findElement(By.xpath("//button[contains(text(),'Next')]"))
+          .click();
+
+    driver.findElement(By.xpath("//input[@placeholder='Your current designation']"))
+          .sendKeys("Software Tester");
+
+    driver.findElement(By.xpath("//input[@placeholder='Your goal']"))
+          .sendKeys("Learn Selenium Automation");
+
+    driver.findElement(By.xpath("//button[@type='submit']"))
+          .click();
+
+    // Open Task page
+    driver.findElement(By.xpath("//a[normalize-space()='Task']"))
+          .click();
+
+    // Open Add Task form
+    driver.findElement(
+        By.cssSelector("button.bg-white.text-gray-900")
+    ).click();
+
+    // Enter invalid time range
+    driver.findElement(By.cssSelector("input[name='start']"))
+          .sendKeys("08:00");
+
+    driver.findElement(By.cssSelector("input[name='end']"))
+          .sendKeys("07:00");
+
+    driver.findElement(By.cssSelector("input[name='do']"))
+          .sendKeys("Practice Selenium");
+
+    // Click Add Task
+    driver.findElement(
+        By.xpath("//button[normalize-space()='Add Task']")
+    ).click();
+
+    // Check whether the task was accepted
+    boolean taskAdded = !driver.findElements(
+        By.xpath("//*[normalize-space()='Practice Selenium']")
+    ).isEmpty();
+
+    Assert.assertFalse(
+        taskAdded,
+        "Defect: Task was accepted with an invalid time range"
+    );
+}
+
+@Test
+public void TC_012_verifyDuplicateTaskNames() {
+
+    // Complete onboarding
+    driver.findElement(By.cssSelector("input[name='userName']"))
+          .sendKeys("Kaviya");
+
+    driver.findElement(By.xpath("//input[@placeholder='Your current age']"))
+          .sendKeys("22");
+
+    driver.findElement(By.xpath("//button[contains(text(),'Next')]"))
+          .click();
+
+    driver.findElement(By.xpath("//input[@placeholder='Your current designation']"))
+          .sendKeys("Software Tester");
+
+    driver.findElement(By.xpath("//input[@placeholder='Your goal']"))
+          .sendKeys("Learn Selenium Automation");
+
+    driver.findElement(By.xpath("//button[@type='submit']"))
+          .click();
+
+    // Open Task page
+    driver.findElement(By.xpath("//a[normalize-space()='Task']"))
+          .click();
+
+    String taskName = "Practice Selenium";
+
+    // Add the same task twice
+    for (int i = 1; i <= 2; i++) {
+
+        driver.findElement(
+            By.cssSelector("button.bg-white.text-gray-900")
+        ).click();
+
+        driver.findElement(By.cssSelector("input[name='start']"))
+              .sendKeys("07:00");
+
+        driver.findElement(By.cssSelector("input[name='end']"))
+              .sendKeys("08:00");
+
+        driver.findElement(By.cssSelector("input[name='do']"))
+              .sendKeys(taskName);
+
+        driver.findElement(
+            By.xpath("//button[normalize-space()='Add Task']")
+        ).click();
+
+        Alert alert = wait.until(
+            org.openqa.selenium.support.ui.ExpectedConditions
+                .alertIsPresent()
+        );
+
+        System.out.println(
+            "Attempt " + i + " Alert: " + alert.getText()
+        );
+
+        alert.accept();
+    }
+
+    // Count matching task elements
+    int taskCount = driver.findElements(
+        By.xpath("//*[normalize-space()='" + taskName + "']")
+    ).size();
+
+    System.out.println("Duplicate task count: " + taskCount);
+
+    // If duplicates are not allowed, expected count should be 1
+    Assert.assertEquals(
+        taskCount,
+        1,
+        "Defect: Duplicate task names were added"
+    );
+}
+
+@Test
+public void TC_013_verifyTaskWithEmptyDateAndTime() {
+
+    // Complete onboarding
+    driver.findElement(By.cssSelector("input[name='userName']"))
+          .sendKeys("Kaviya");
+
+    driver.findElement(By.xpath("//input[@placeholder='Your current age']"))
+          .sendKeys("22");
+
+    driver.findElement(By.xpath("//button[contains(text(),'Next')]"))
+          .click();
+
+    driver.findElement(By.xpath("//input[@placeholder='Your current designation']"))
+          .sendKeys("Software Tester");
+
+    driver.findElement(By.xpath("//input[@placeholder='Your goal']"))
+          .sendKeys("Learn Selenium Automation");
+
+    driver.findElement(By.xpath("//button[@type='submit']"))
+          .click();
+
+    // Open Task page
+    driver.findElement(By.xpath("//a[normalize-space()='Task']"))
+          .click();
+
+    // Open Add Task form
+    driver.findElement(
+        By.cssSelector("button.bg-white.text-gray-900")
+    ).click();
+
+    // Leave all fields empty
+    driver.findElement(
+        By.xpath("//button[normalize-space()='Add Task']")
+    ).click();
+
+    // Verify alert
+    Alert alert = wait.until(
+        org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent()
+    );
+
+    String actualMessage = alert.getText();
+
+    System.out.println("Actual Result: " + actualMessage);
+
+    // Empty task should not be accepted
+    Assert.assertNotEquals(
+        actualMessage,
+        "Task Added",
+        "Defect: Task was added without entering date and time"
+    );
+
+    alert.accept();
+}
+
+@Test
+public void TC_014_verifyCommitmentStatusUpdate() {
+
+    // Complete onboarding
+    driver.findElement(By.cssSelector("input[name='userName']"))
+          .sendKeys("Kaviya");
+
+    driver.findElement(By.xpath("//input[@placeholder='Your current age']"))
+          .sendKeys("22");
+
+    driver.findElement(By.xpath("//button[contains(text(),'Next')]"))
+          .click();
+
+    driver.findElement(By.xpath("//input[@placeholder='Your current designation']"))
+          .sendKeys("Software Tester");
+
+    driver.findElement(By.xpath("//input[@placeholder='Your goal']"))
+          .sendKeys("Learn Selenium Automation");
+
+    driver.findElement(By.xpath("//button[@type='submit']"))
+          .click();
+
+    // Open Scheduler page
+    driver.findElement(By.xpath("//a[normalize-space()='Scheduler']"))
+          .click();
+
+    // Enter commitment details
+    driver.findElement(By.name("date"))
+          .sendKeys("2026-10-30");
+
+    driver.findElement(By.name("commitment"))
+          .sendKeys("Walking one hour");
+
+    // Select Completed status
+    WebElement statusDropdown =
+          driver.findElement(By.name("status"));
+
+    Select select = new Select(statusDropdown);
+    select.selectByVisibleText("Completed");
+
+    // Verify selected status
+    Assert.assertEquals(
+        select.getFirstSelectedOption().getText(),
+        "Completed",
+        "Commitment status was not updated"
+    );
+
+    System.out.println(
+        "TC_014 Passed: Commitment status selected as Completed"
+    );
+}
+@Test
+public void TC_015_verifyInvalidAge() {
+
+    driver.findElement(By.name("userName")).sendKeys("Kaviya");
+
+    driver.findElement(By.xpath("//input[@placeholder='Your current age']"))
+           .sendKeys("-5");
+
+    driver.findElement(By.xpath("//button[contains(text(),'Next')]")).click();
+
+    WebElement ageField = driver.findElement(
+        By.xpath("//input[@placeholder='Your current age']")
+    );
+
+    Assert.assertFalse(
+        ageField.getAttribute("validationMessage").isEmpty(),
+        "Defect: Invalid age was accepted without validation"
+    );
+
+    System.out.println("TC_015 Passed: Invalid age validation displayed");
+}
+@Test
+public void TC_016_verifyThemeToggle() {
+
+    // Complete onboarding
+    driver.findElement(By.name("userName")).sendKeys("Kaviya");
+    driver.findElement(By.xpath("//input[@placeholder='Your current age']")).sendKeys("22");
+    driver.findElement(By.xpath("//button[contains(text(),'Next')]")).click();
+
+    driver.findElement(By.xpath("//input[@placeholder='Your current designation']"))
+          .sendKeys("Software Tester");
+    driver.findElement(By.xpath("//input[@placeholder='Your goal']"))
+          .sendKeys("Learn Selenium Automation");
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+
+    // Locate theme toggle div
+    WebElement themeToggle = wait.until(
+        ExpectedConditions.elementToBeClickable(
+            By.xpath("//div[contains(@class,'cursor-pointer') and contains(@class,'rounded-full')]")
+        )
+    );
+
+    // Get theme indicator before clicking
+    String beforeTheme = themeToggle.getText();
+
+    // Click theme toggle
+    themeToggle.click();
+
+    // Wait until theme indicator changes
+    wait.until(driver ->
+        !themeToggle.getText().equals(beforeTheme)
+    );
+
+    String afterTheme = themeToggle.getText();
+
+    Assert.assertNotEquals(
+        afterTheme, beforeTheme,
+        "Defect: Theme did not change"
+    );
+
+    System.out.println("TC_016 Passed: Theme toggle changed successfully");
+}
+@Test
+public void TC_017_verifyLongTaskName() {
+
+    // Complete onboarding
+    driver.findElement(By.name("userName")).sendKeys("Kaviya");
+    driver.findElement(By.xpath("//input[@placeholder='Your current age']")).sendKeys("22");
+    driver.findElement(By.xpath("//button[contains(text(),'Next')]")).click();
+
+    driver.findElement(By.xpath("//input[@placeholder='Your current designation']"))
+          .sendKeys("Software Tester");
+    driver.findElement(By.xpath("//input[@placeholder='Your goal']"))
+          .sendKeys("Learn Selenium Automation");
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+
+    // Open Task page
+    driver.findElement(By.xpath("//a[normalize-space()='Task']")).click();
+
+    // Open Add Task form
+    driver.findElement(By.cssSelector("button.bg-white.text-gray-900")).click();
+
+    // Enter task details with a long task name
+    String taskName = "Complete Selenium Automation Testing Project Successfully";
+
+    driver.findElement(By.name("start")).sendKeys("07:00");
+    driver.findElement(By.name("end")).sendKeys("08:00");
+    driver.findElement(By.name("do")).sendKeys(taskName);
+
+    // Add task
+    driver.findElement(By.xpath("//button[normalize-space()='Add Task']")).click();
+
+    // Verify alert
+    Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+
+    Assert.assertEquals(alert.getText(), "Task Added",
+            "Long task name was not accepted");
+
+    alert.accept();
+
+    System.out.println("TC_017 Passed: Long task name handled successfully");
+}
+
+
+@Test
+public void TC_018_verifyBrowserBackButton() {
+
+    // Step 1: Complete onboarding
+    driver.findElement(By.name("userName"))
+          .sendKeys("Kaviya");
+
+    driver.findElement(By.xpath("//input[@placeholder='Your current age']"))
+          .sendKeys("22");
+
+    driver.findElement(By.xpath("//button[contains(text(),'Next')]"))
+          .click();
+
+    driver.findElement(By.xpath("//input[@placeholder='Your current designation']"))
+          .sendKeys("Software Tester");
+
+    driver.findElement(By.xpath("//input[@placeholder='Your goal']"))
+          .sendKeys("Learn Selenium Automation");
+
+    driver.findElement(By.xpath("//button[@type='submit']"))
+          .click();
+
+    // Step 2: Wait for application page
+    wait.until(ExpectedConditions.urlContains(
+        "streakify-consistency-tracker.vercel.app"
+    ));
+
+    // Step 3: Store Home page URL
+    String homeUrl = driver.getCurrentUrl();
+
+    // Step 4: Open Task page
+    driver.findElement(By.xpath("//a[normalize-space()='Task']"))
+          .click();
+
+    // Step 5: Wait until navigation occurs
+    wait.until(driver ->
+        !driver.getCurrentUrl().equals(homeUrl)
+    );
+
+    String taskUrl = driver.getCurrentUrl();
+
+    Assert.assertNotEquals(
+        taskUrl, homeUrl,
+        "Task page navigation did not occur"
+    );
+
+    // Step 6: Click browser Back button
+    driver.navigate().back();
+
+    // Step 7: Wait until Home page URL returns
+    wait.until(ExpectedConditions.urlToBe(homeUrl));
+
+    // Step 8: Verify browser Back navigation
+    Assert.assertEquals(
+        driver.getCurrentUrl(),
+        homeUrl,
+        "Browser Back button did not return to the previous page"
+    );
+
+    System.out.println(
+        "TC_018 Passed: Browser Back button returned to previous page"
+    );
+}
+
+
+	    @AfterMethod
+	    public void closeBrowser() {
+	        driver.quit();
+	    }
+
+}
